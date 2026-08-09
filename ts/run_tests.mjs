@@ -1,0 +1,11 @@
+import { decide, replay } from "./transcript.mjs";
+import assert from "node:assert/strict";
+const policy = { policyId: "p1", redLines: new Set(["bash"]), allowedTools: new Set(["read_file", "search"]) };
+const e = decide(policy, { callId: "c1", tool: "bash", args: {} });
+assert.equal(e.verdict, "REFUSE");
+assert.equal(e.reason, "RED_LINE");
+const calls = [{ callId: "c1", tool: "search", args: { q: "a" } }, { callId: "c2", tool: "bash", args: {} }];
+const a = replay(policy, calls);
+const b = replay(policy, calls);
+assert.deepEqual(a.map(x => x.fingerprint), b.map(x => x.fingerprint));
+console.log("ok");
