@@ -1,0 +1,44 @@
+{
+  "schema": "glaciereq.repo-canonical-position.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "position_state": "RESOLVED",
+  "role": "company_specific_specialist_system",
+  "company_target": "Anthropic",
+  "canonical_identity": "constitutional-tool-transcript",
+  "unique_value": [
+    "tool decisions are bound to a deterministic policy hash instead of narrative safety claims",
+    "red-line tools fail closed with an explicit refusal reason",
+    "identical policy and tool-call inputs reproduce verdict and receipt fingerprints deterministically"
+  ],
+  "capability_contribution": {
+    "family": "policy_bound_tool_decision_transcripts",
+    "extractable_mechanisms": [
+      "policy-hash-bound tool decisions",
+      "explicit red-line refusal",
+      "deterministic decision replay fingerprints"
+    ],
+    "ownership": "This repository remains the owning Anthropic-specialist implementation of the constitutional tool transcript mechanism; extraction preserves repository identity and lineage."
+  },
+  "integration_policy": {
+    "preserve_repository_identity": true,
+    "preserve_lineage": true,
+    "presentation_independent": true,
+    "size_or_loc_not_dispositive": true,
+    "absorption_requires_functional_equivalence": true,
+    "absorption_requires_proof_equivalence": true
+  },
+  "next_evolution": "Bind transcript decisions to explicit tool-schema versions and one-shot call identities, then emit externally verifiable replay receipts without weakening red-line refusal.",
+  "evidence_refs": [
+    "README.md",
+    "ISSUE_CONTRACT.md",
+    "src/transcript.py",
+    "machine/target-contract.json",
+    "machine/proof_receipt.json",
+    "machine/operability_receipt.json",
+    "machine/promotion_authority.json"
+  ],
+  "nonclaims": [
+    "no Anthropic affiliation",
+    "not a production Anthropic safety-control deployment"
+  ]
+}
