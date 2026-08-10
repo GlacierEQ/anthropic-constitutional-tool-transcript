@@ -1,0 +1,66 @@
+{
+  "schema": "glaciereq.repo-canonical-position.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "position_state": "RESOLVED",
+  "role": "company_specific_specialist_system",
+  "company_target": "Anthropic",
+  "canonical_identity": "constitutional-tool-transcript",
+  "unique_value": [
+    "each tool decision is bound to an immutable policy hash and content-addressed tool input",
+    "allow/refuse outcomes carry stable reason codes and a deterministic transcript fingerprint",
+    "hard red-line tools refuse independently of the general allow-list and replay recomputes the same decision contract"
+  ],
+  "lineage_distinction": {
+    "anthropic-safety-monitor": "broader proposed-action safety boundary; this repository specializes in content-addressed decision transcripts and deterministic replay identity",
+    "anthropic-refusal-replay-harness": "golden refusal regression suite; this repository binds each individual decision to policy hash, input digest, verdict, reason, and fingerprint"
+  },
+  "capability_contribution": {
+    "family": "policy_bound_deterministic_tool_transcripts",
+    "extractable_mechanisms": [
+      "policy-hash binding",
+      "tool-input content addressing",
+      "stable allow/refuse reason codes",
+      "deterministic decision fingerprints",
+      "hard red-line refusal"
+    ],
+    "ownership": "This repository remains the owning Anthropic-specialist implementation of deterministic policy-bound tool transcripts; capability extraction preserves repository identity and lineage."
+  },
+  "integration_policy": {
+    "preserve_repository_identity": true,
+    "preserve_lineage": true,
+    "presentation_independent": true,
+    "size_or_loc_not_dispositive": true,
+    "absorption_requires_functional_equivalence": true,
+    "absorption_requires_proof_equivalence": true
+  },
+  "relationships": [
+    {
+      "repository": "GlacierEQ/anthropic-safety-monitor",
+      "kind": "REFERENCE_COMPLEMENT",
+      "integration_state": "NOT_CLAIMED"
+    },
+    {
+      "repository": "GlacierEQ/anthropic-refusal-replay-harness",
+      "kind": "SPECIALIST_SIBLING",
+      "integration_state": "NOT_CLAIMED"
+    }
+  ],
+  "next_evolution": "Bind replay batches to immutable policy-version provenance and a sequence root so policy drift, transcript reordering, omission, and tampering are detectable without weakening deterministic refusal semantics.",
+  "evidence_refs": [
+    "README.md",
+    "ISSUE_CONTRACT.md",
+    "src/transcript.py",
+    "tests/test_transcript.py",
+    "tests/test_adversarial.py",
+    "machine/target-contract.json",
+    "machine/proof_receipt.json",
+    "machine/operability_receipt.json",
+    "machine/promotion_authority.json"
+  ],
+  "nonclaims": [
+    "no Anthropic affiliation",
+    "no Anthropic internal architecture claim",
+    "not a production tool-safety deployment",
+    "repository relationships do not imply exercised integration"
+  ]
+}
