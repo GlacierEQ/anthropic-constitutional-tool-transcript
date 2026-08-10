@@ -1,1 +1,20 @@
-{"capabilities": ["hyper-scaling"]}
+{
+  "schema": "glaciereq.repo-capabilities.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "capability_family": "policy_bound_deterministic_tool_transcripts",
+  "capabilities": [
+    "policy-bound-tool-decision-transcripts",
+    "deterministic-allow-refuse-replay",
+    "policy-hash-binding",
+    "tool-input-content-addressing",
+    "stable-reason-code-verdicts",
+    "hard-red-line-refusal"
+  ],
+  "evidence_refs": [
+    "src/transcript.py",
+    "tests/test_transcript.py",
+    "tests/test_adversarial.py",
+    "machine/proof_receipt.json"
+  ],
+  "truth_boundary": "Capabilities are repository-local mechanisms. They do not imply Anthropic adoption, production deployment, or integration with sibling repositories."
+}
