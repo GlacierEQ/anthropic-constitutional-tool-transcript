@@ -1,0 +1,11 @@
+{
+  "schema": "glaciereq.promotion-authority-grant.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "source_sha": "6c97cd8c13600cd14c9d2010750e24ab26958922305931b4cf9496d80e7aa57f",
+  "proof_receipt_digest": "b5cb8e35edff25fd4c65619d7e786b13553f48bcd0eb7361bac00f990378e6a8",
+  "not_after": 1788927149.234226,
+  "mac": "046cf5500316a366abe2baad5f4a630cea80628324d51352fed64da459cd4605",
+  "issuer": "local_operator_promotion_authority",
+  "verified": true,
+  "secret_ref": "src/promotion_authority.py::LOCAL_OPERATOR_SECRET"
+}

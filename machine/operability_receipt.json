@@ -1,0 +1,24 @@
+{
+  "schema": "glaciereq.operability-receipt.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "at": "2026-08-10T04:12Z",
+  "source_sha": "6c97cd8c13600cd14c9d2010750e24ab26958922305931b4cf9496d80e7aa57f",
+  "entry": "scripts/operate.py",
+  "primary_output": {
+    "module": "transcript",
+    "ok": true,
+    "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+    "smoke": {
+      "args": [],
+      "content_checked": true,
+      "invoked": true,
+      "kind": "class",
+      "method": "policy_hash",
+      "module_local": true,
+      "name": "Policy",
+      "result": "edec648429f4337335da2273c3a3970d27d58bacb168498e505e150360a5396a"
+    }
+  },
+  "dual_run_ok": true,
+  "result": "PASS"
+}
