@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 STATE = json.loads((ROOT / "machine" / "excellence-state.json").read_text(encoding="utf-8"))
 POSITION = json.loads((ROOT / "machine" / "canonical-position.json").read_text(encoding="utf-8"))
+CAPABILITIES = json.loads((ROOT / "machine" / "capabilities.json").read_text(encoding="utf-8"))
 
 
 class CanonicalPositionContractTests(unittest.TestCase):
@@ -26,10 +27,22 @@ class CanonicalPositionContractTests(unittest.TestCase):
         self.assertTrue(policy["absorption_requires_functional_equivalence"])
         self.assertTrue(policy["absorption_requires_proof_equivalence"])
 
+    def test_capability_manifest_names_repository_native_mechanisms(self):
+        self.assertEqual(
+            CAPABILITIES["capability_family"], "policy_bound_tool_decision_transcripts"
+        )
+        capabilities = set(CAPABILITIES["capabilities"])
+        self.assertIn("policy-hash-bound-tool-decisions", capabilities)
+        self.assertIn("deterministic-allow-refuse-replay", capabilities)
+        self.assertIn("hard-red-line-refusal", capabilities)
+        self.assertIn("deterministic-decision-fingerprints", capabilities)
+        self.assertNotIn("hyper-scaling", capabilities)
+
     def test_evolution_is_material_and_claim_boundary_is_preserved(self):
         self.assertTrue(STATE["evolution_cursor"].startswith("next:"))
         self.assertTrue(POSITION["next_evolution"])
         self.assertIn("no Anthropic affiliation", POSITION["nonclaims"])
+        self.assertIn("No Anthropic adoption", CAPABILITIES["truth_boundary"])
 
 
 if __name__ == "__main__":
