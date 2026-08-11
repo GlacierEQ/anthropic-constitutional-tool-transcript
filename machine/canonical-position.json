@@ -51,7 +51,8 @@
     "machine/evolution-receipts/2026-08-11-schema-bound-replay-receipts.json"
   ],
   "nonclaims": [
-    "no Anthropic affiliation or adoption",
+    "no Anthropic affiliation",
+    "no Anthropic adoption",
     "not a production Anthropic safety-control deployment",
     "replay receipts are deterministic hashes, not signatures",
     "tool schema references are not authenticated registry attestations",
