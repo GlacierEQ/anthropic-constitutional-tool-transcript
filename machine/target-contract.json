@@ -2,21 +2,48 @@
   "schema": "glaciereq.repo-target-contract.v1",
   "identity": {
     "repository_id": "GlacierEQ/anthropic-constitutional-tool-transcript",
-    "family": "elite-estate"
+    "family": "elite-estate",
+    "canonical_identity": "constitutional-tool-transcript"
   },
   "current": {
-    "state": "PROMOTED",
+    "state": "EVOLVING",
     "implemented": true,
     "tested": true,
-    "deployed": false
+    "deployed": false,
+    "evolution_generation": 1
   },
-  "nonclaims": [
-    "no employer affiliation",
-    "no production deployment without receipt"
+  "target": {
+    "purpose": "Produce deterministic, policy-bound tool-decision transcripts whose schema identity, call identity, arguments, decision chain, and replay proof cannot drift independently.",
+    "central_bottleneck": "A transcript is not reproducible proof if tool arguments are omitted from identity, call IDs can be rebound, schema versions are implicit, or replay has no independently recomputable receipt."
+  },
+  "invariants": [
+    "red-line refusal dominates schema state and never becomes ALLOW",
+    "allowed tool decisions require the policy-bound schema version and schema digest",
+    "a call ID is one-shot: exact replay is idempotent and changed input is rejected",
+    "tool arguments are strict canonical JSON and are bound into input and decision identity",
+    "transcript entries bind sequence and previous fingerprint",
+    "replay receipts bind policy, ordered calls, requested count, unique entry count, and transcript root",
+    "Python and Node preserve fixed cross-runtime hash vectors",
+    "non-finite and unsupported evidence fails closed"
   ],
+  "promotion": {
+    "required_tests": ["python", "node", "adversarial", "cross_runtime_hash_vectors"],
+    "require_exact_source_sha": true,
+    "require_receipt": true,
+    "require_nonclaims": true
+  },
   "donor_plan": {
-    "mode": "none",
+    "status": "RESOLVED",
+    "strategy": "INDEPENDENT_MECHANISM_PRESERVED",
     "donors": []
   },
-  "frozen_at": "2026-08-10T04:12Z"
+  "nonclaims": [
+    "no Anthropic affiliation or adoption",
+    "no production Anthropic safety-control deployment",
+    "replay receipts are deterministic hashes rather than cryptographic signatures",
+    "tool schema digests are policy-supplied rather than registry-authenticated",
+    "the transcript does not execute tools or verify their results"
+  ],
+  "completed_evolution_receipt": "machine/evolution-receipts/2026-08-11-schema-bound-replay-receipts.json",
+  "next_evolution": "next:signed_schema_registry_authority_and_tool_result_receipt_binding"
 }
