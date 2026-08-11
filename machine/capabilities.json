@@ -8,14 +8,21 @@
     "deterministic-allow-refuse-replay",
     "stable-reason-code-verdicts",
     "hard-red-line-refusal",
-    "deterministic-decision-fingerprints"
+    "deterministic-decision-fingerprints",
+    "tool-schema-version-binding",
+    "one-shot-tool-call-identity",
+    "hash-chained-transcript-entries",
+    "cross-runtime-replay-receipts",
+    "replay-receipt-recomputation-verification"
   ],
   "evidence_refs": [
     "src/transcript.py",
+    "ts/transcript.mjs",
     "tests/test_transcript.py",
-    "tests/test_adversarial.py",
+    "ts/run_tests.mjs",
     "machine/proof_receipt.json",
-    "machine/canonical-position.json"
+    "machine/canonical-position.json",
+    "machine/evolution-receipts/2026-08-11-schema-bound-replay-receipts.json"
   ],
-  "truth_boundary": "Repository-local mechanisms only. No Anthropic adoption, production deployment, or exercised integration with sibling repositories is implied."
+  "truth_boundary": "Repository-local deterministic claim and replay mechanisms only. Schema digests are policy-supplied rather than registry-authenticated; tool results are not yet bound. No Anthropic adoption, production deployment, or exercised sibling integration is implied."
 }

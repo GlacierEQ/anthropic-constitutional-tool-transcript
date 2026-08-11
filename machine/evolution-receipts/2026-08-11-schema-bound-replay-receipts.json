@@ -1,0 +1,32 @@
+{
+  "schema": "glaciereq.repo-evolution-receipt.v1",
+  "repository": "GlacierEQ/anthropic-constitutional-tool-transcript",
+  "consumed_cursor": "next:tool_schema_version_binding_one_shot_call_identity_verifiable_replay_receipts",
+  "candidate_source_sha": "dd227bbf5a713463bb5f32317993d731b13a3257",
+  "workflow_run": 31462143129,
+  "result": "PASS",
+  "observed_lanes": {
+    "python_unittest": "PASS",
+    "node": "PASS"
+  },
+  "verified_mechanisms": [
+    "allowed tool decisions require explicit schema version and schema digest policy bindings",
+    "red-line refusal remains dominant even when schema state is absent",
+    "call IDs are one-shot: exact input replay is idempotent and rebinding fails closed",
+    "tool arguments are bound into Python and Node input and decision fingerprints",
+    "transcript entries form a deterministic hash chain with sequence and previous fingerprint",
+    "replay receipts bind policy hash, ordered call digest, requested count, unique entry count, and transcript root",
+    "replay receipts verify by independent deterministic recomputation",
+    "Python and Node share fixed policy/input/entry/replay hash vectors",
+    "non-finite and unsupported JSON evidence fails closed"
+  ],
+  "boundaries": [
+    "replay receipts are deterministic hash-bound receipts, not cryptographic signatures",
+    "tool schema digests are policy-supplied references, not authenticated registry attestations",
+    "the transcript authorizes or refuses policy decisions but does not execute tools",
+    "tool execution results are not yet bound into the transcript",
+    "no Anthropic affiliation or adoption",
+    "not a production Anthropic safety-control service"
+  ],
+  "next_cursor": "next:signed_schema_registry_authority_and_tool_result_receipt_binding"
+}
