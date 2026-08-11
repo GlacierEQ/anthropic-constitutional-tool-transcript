@@ -7,15 +7,20 @@
   "canonical_identity": "constitutional-tool-transcript",
   "unique_value": [
     "tool decisions are bound to a deterministic policy hash instead of narrative safety claims",
-    "red-line tools fail closed with an explicit refusal reason",
-    "identical policy and tool-call inputs reproduce verdict and receipt fingerprints deterministically"
+    "red-line tools fail closed with an explicit refusal reason and remain dominant over schema state",
+    "allowed decisions bind an explicit tool schema version and digest",
+    "one-shot call identity prevents later rebinding of a prior tool-call identifier",
+    "hash-chained transcript entries and deterministic replay receipts make policy decisions independently reproducible across Python and Node"
   ],
   "capability_contribution": {
     "family": "policy_bound_tool_decision_transcripts",
     "extractable_mechanisms": [
       "policy-hash-bound tool decisions",
       "explicit red-line refusal",
-      "deterministic decision replay fingerprints"
+      "tool-schema-version binding",
+      "one-shot call identity",
+      "hash-chained transcript entries",
+      "cross-runtime deterministic replay receipts"
     ],
     "ownership": "This repository remains the owning Anthropic-specialist implementation of the constitutional tool transcript mechanism; extraction preserves repository identity and lineage."
   },
@@ -27,18 +32,29 @@
     "absorption_requires_functional_equivalence": true,
     "absorption_requires_proof_equivalence": true
   },
-  "next_evolution": "Bind transcript decisions to explicit tool-schema versions and one-shot call identities, then emit externally verifiable replay receipts without weakening red-line refusal.",
+  "completed_evolution": {
+    "cursor": "next:tool_schema_version_binding_one_shot_call_identity_verifiable_replay_receipts",
+    "receipt": "machine/evolution-receipts/2026-08-11-schema-bound-replay-receipts.json",
+    "candidate_source_sha": "dd227bbf5a713463bb5f32317993d731b13a3257",
+    "workflow_run": 31462143129
+  },
+  "next_evolution": "Bind schema references to authenticated registry authority and bind verified tool-result receipts back into the transcript without confusing policy allowance with execution completion.",
   "evidence_refs": [
     "README.md",
     "ISSUE_CONTRACT.md",
     "src/transcript.py",
+    "ts/transcript.mjs",
     "machine/target-contract.json",
     "machine/proof_receipt.json",
     "machine/operability_receipt.json",
-    "machine/promotion_authority.json"
+    "machine/promotion_authority.json",
+    "machine/evolution-receipts/2026-08-11-schema-bound-replay-receipts.json"
   ],
   "nonclaims": [
-    "no Anthropic affiliation",
-    "not a production Anthropic safety-control deployment"
+    "no Anthropic affiliation or adoption",
+    "not a production Anthropic safety-control deployment",
+    "replay receipts are deterministic hashes, not signatures",
+    "tool schema references are not authenticated registry attestations",
+    "tool execution and result verification are not implemented"
   ]
 }
