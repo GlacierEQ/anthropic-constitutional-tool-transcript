@@ -11,6 +11,36 @@ Pairs with `anthropic-safety-monitor` / `anthropic-agent-coordinator`.
 Independent GlacierEQ reference only. No company affiliation, employment, deployment,
 endorsement, or proprietary access is claimed. Names label public problem spaces.
 
+
+## Epistemology / Verification
+
+**L0 (Presence):** Source modules (`src/transcript.py`, `src/promotion_authority.py`) and tests exist and import cleanly. Verified.
+
+**L1 (Structure):** Public classes/functions (`ConstitutionalTranscript`, `Policy`, `ToolCall`, `ToolSchemaRef`, `Verdict`, `PromotionAuthority`, `verify_bound_grant`, `verify_replay_receipt`) exist with documented signatures. Verified.
+
+**L2 (Behavior):** Python suite 26/26 passing; Node suite passing; `ruff check src/ tests/` clean; `scripts/operate.py` smoke passes. Verified.
+
+### Aspirational (L0/L1 only, not L2)
+
+- Authenticated schema-registry authority for tool schema references (not yet implemented).
+- Verified tool-result receipts bound back into the transcript.
+- Tool execution and tool-result verification (out of scope; transcript records decisions only).
+- Cryptographic signatures (current receipts are deterministic hashes).
+- Production deployment or exercised sibling integration.
+
+### Verification commands
+
+```bash
+PYTHONPATH=src pytest tests/ -v
+PYTHONPATH=src python scripts/operate.py
+node ts/run_tests.mjs
+/tmp/cu-venv/bin/ruff check src/ tests/
+```
+
+### Not claimed
+
+No Anthropic affiliation, adoption, employment, or production safety-service deployment is claimed. This is an independent reference implementation; replay receipts are deterministic hashes, not signatures.
+
 ### Machine–Mesh Protocol Manifest
 
 <!-- glacier-eq-protocol:start -->

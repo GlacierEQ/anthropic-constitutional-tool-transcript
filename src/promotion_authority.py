@@ -13,7 +13,7 @@ import hmac
 import json
 import time
 from dataclasses import dataclass
-
+from pathlib import Path
 
 # Reference local operator secret (NOT production). Documented for re-verification.
 LOCAL_OPERATOR_SECRET = b"glaciereq-local-operator-promotion-authority-v1"
@@ -41,7 +41,7 @@ class PromotionGrant:
         })
 
     @classmethod
-    def from_dict(cls, d: dict) -> "PromotionGrant":
+    def from_dict(cls, d: dict) -> PromotionGrant:
         return cls(
             repository=d["repository"],
             source_sha=d["source_sha"],
@@ -80,7 +80,7 @@ class PromotionAuthority:
 
 def verify_bound_grant(
     grant_dict: dict,
-    proof_receipt_path: str | bytes | "Path",
+    proof_receipt_path: str | bytes | Path,
     *,
     secret: bytes = LOCAL_OPERATOR_SECRET,
     now: float | None = None,
@@ -101,7 +101,7 @@ def verify_bound_grant(
     file_digest = hashlib.sha256(proof_bytes).hexdigest()
     try:
         proof = json.loads(proof_bytes.decode())
-    except Exception:
+    except Exception:  # noqa: BLE001
         return False, "PROOF_RECEIPT_INVALID_JSON"
     if grant_dict.get("proof_receipt_digest") != file_digest:
         return False, "PROOF_DIGEST_MISMATCH"
@@ -109,7 +109,7 @@ def verify_bound_grant(
         return False, "SOURCE_SHA_MISMATCH"
     try:
         grant = PromotionGrant.from_dict(grant_dict)
-    except Exception:
+    except Exception:  # noqa: BLE001
         return False, "GRANT_MALFORMED"
     auth = PromotionAuthority(secret, ttl_s=max(1.0, float(grant.not_after) - (now or time.time()) + 1.0))
     return auth.verify(grant, now=now)

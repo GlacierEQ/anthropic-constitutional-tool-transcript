@@ -1,9 +1,11 @@
 from __future__ import annotations
+
 import importlib
 import inspect
-import unittest
 import sys
+import unittest
 from pathlib import Path
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "src"))
@@ -14,7 +16,7 @@ class AdversarialEliteTests(unittest.TestCase):
         for name in ('transcript', "src." + 'transcript'):
             try:
                 return importlib.import_module(name)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 errors.append(f"{name}: {e}")
         self.fail("; ".join(errors))
 
@@ -51,7 +53,7 @@ class AdversarialEliteTests(unittest.TestCase):
                 ):
                     continue
                 inst = cls()
-            except Exception:
+            except Exception:  # noqa: BLE001, S112
                 continue
             plan = getattr(inst, "plan", None)
             if callable(plan):
@@ -70,7 +72,7 @@ class AdversarialEliteTests(unittest.TestCase):
                         exercised = True
                     else:
                         exercised = True
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001
                     # hard fail-closed is acceptable refuse
                     exercised = True
                     self.assertIsInstance(e, Exception)
@@ -93,7 +95,7 @@ class AdversarialEliteTests(unittest.TestCase):
                     exercised = True
                 except TypeError:
                     continue
-                except Exception:
+                except Exception:  # noqa: BLE001
                     exercised = True
 
         # module-level schedule([]) / health edges
@@ -109,9 +111,9 @@ class AdversarialEliteTests(unittest.TestCase):
                     out = sched([])
                     self.assertIsNotNone(out)
                     exercised = True
-                except Exception:
+                except Exception:  # noqa: BLE001
                     exercised = True
-            except Exception:
+            except Exception:  # noqa: BLE001
                 exercised = True
 
         for edge_fn, args in (
@@ -126,7 +128,7 @@ class AdversarialEliteTests(unittest.TestCase):
                 out = fn(*args)
                 self.assertIsNotNone(out)
                 exercised = True
-            except Exception:
+            except Exception:  # noqa: BLE001
                 exercised = True
 
         # metrics / efficiency attributes on zero-arg engines
@@ -135,7 +137,7 @@ class AdversarialEliteTests(unittest.TestCase):
                 continue
             try:
                 inst = cls()
-            except Exception:
+            except Exception:  # noqa: BLE001, S112
                 continue
             metrics = getattr(inst, "metrics", None)
             if isinstance(metrics, dict) and metrics:
@@ -148,7 +150,7 @@ class AdversarialEliteTests(unittest.TestCase):
             public = [n for n in dir(mod) if not n.startswith("_")]
             self.assertGreater(len(public), 0)
             with self.assertRaises((AttributeError, TypeError, ImportError, ValueError, KeyError)):
-                getattr(mod, "__elite_missing_surface__")
+                mod.__elite_missing_surface__  # noqa: B018
 
 if __name__ == "__main__":
     unittest.main()

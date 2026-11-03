@@ -4,10 +4,10 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any, Mapping, Sequence
-
+from typing import Any
 
 _HEX = frozenset("0123456789abcdef")
 _GENESIS = "0" * 64
